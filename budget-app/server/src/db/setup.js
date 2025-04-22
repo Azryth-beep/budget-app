@@ -39,6 +39,10 @@ db.serialize(() => {
       name TEXT
     )
   `);
+  db.run('INSERT OR IGNORE INTO categories (type, name) VALUES (?, ?)', ['income', 'Salario']);
+  db.run('INSERT OR IGNORE INTO categories (type, name) VALUES (?, ?)', ['income', 'Freelancing']);
+  db.run('INSERT OR IGNORE INTO categories (type, name) VALUES (?, ?)', ['expense', 'Alojamiento']);
+  db.run('INSERT OR IGNORE INTO categories (type, name) VALUES (?, ?)', ['expense', 'Transporte']);
 });
 
 module.exports = db;
