@@ -8,19 +8,6 @@ const SECRET_KEY = process.env.JWT_SECRET || 'my_secret_key';
 // const TOKEN_EXPIRATION = '1h'; // Token expiration time
 const SALT_ROUNDS = 10;
 
-// Registro anterior
-// router.post('/register', (req, res) => {
-//   const { email, password } = req.body;
-//   db.run(
-//     'INSERT INTO users (email, password) VALUES (?, ?)',
-//     [email, password],
-//     function (err) {
-//       if (err) return res.status(500).json({ error: err.message });
-//       res.status(201).json({ id: this.lastID, email });
-//     },
-//   );
-// });
-
 // Registro
 router.post('/register', async (req, res) => {
   const { email, password } = req.body;
@@ -38,20 +25,6 @@ router.post('/register', async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
-
-// Login anterior
-// router.post('/login', (req, res) => {
-//   const { email, password } = req.body;
-//   db.get(
-//     'SELECT * FROM users WHERE email = ? AND password = ?',
-//     [email, password],
-//     (err, row) => {
-//       if (err) return res.status(500).json({ error: err.message });
-//       if (!row) return res.status(401).json({ error: 'Invalid credentials' });
-//       res.json({ id: row.id, email: row.email });
-//     },
-//   );
-// });
 
 // Login
 router.post('/login', (req, res) => {
