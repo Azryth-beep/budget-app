@@ -5,8 +5,9 @@ const authMiddleware = require('../middleware/auth'); // Asegúrate de que la ru
 
 // Listar ingresos
 router.get('/', authMiddleware, (req, res) => {
-	const userId = req.query.user_id;
-	db.all('SELECT * FROM incomes WHERE user_id  = ?', [userId], (err, rows) => {
+	const userId = req.user.id; // Desde JWT
+	
+	db.all('SELECT * FROM incomes WHERE user_id = ?', [userId], (err, rows) => {
 		if (err) return res.status(500).json({ error: err.message });
 		res.json(rows);
 	});
@@ -23,7 +24,7 @@ router.post('/', authMiddleware, (req, res) => {
 			if (err) return res.status(500).json({ error: err.message });
 			res.status(201).json({ id: this.lastID });
 		},
-	);
+	);	
 });
 
 module.exports = router;

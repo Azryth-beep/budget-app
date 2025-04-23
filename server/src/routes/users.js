@@ -68,4 +68,16 @@ router.post('/login', (req, res) => {
   });
 });
 
+// Get all users
+router.get('/all', (req, res) => {
+  db.all('SELECT id, email FROM users', [], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+    console.log(rows);
+    
+  });  
+});
+
+
+
 module.exports = router;
