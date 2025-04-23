@@ -10,6 +10,7 @@ type Store = {
   setFormat: (format: Format) => void;
   setUser: (user: User) => void;
   clearUser: () => void;
+  logout: () => void;
 };
 
 export const useStore = create<Store>()(
@@ -20,6 +21,10 @@ export const useStore = create<Store>()(
       setFormat: (format) => set({ format }),
       setUser: (user) => set({ user }),
       clearUser: () => set({ user: null }),
+      logout: () => {
+        set({ user: null });
+        localStorage.removeItem('budget-app-storage');
+      },
     }),
     { name: 'budget-app-storage' },
   ),
